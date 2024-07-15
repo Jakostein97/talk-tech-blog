@@ -17,7 +17,11 @@ Article.init(
     },
     author: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "username",
+      },
     },
     content: {
         type: DataTypes.STRING,

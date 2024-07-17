@@ -5,4 +5,13 @@ router.get('/', async (req, res) => {
   res.render('homepage');
 });
 
+router.get( '/signup', async (req, res) => {
+  try {
+    res.render('signUp')
+  } catch (error) {
+    console.error(error)
+    res.status(500).json()
+  }
+})
+
 module.exports = router;

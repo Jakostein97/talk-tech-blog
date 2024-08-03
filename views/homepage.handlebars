@@ -1,3 +1,13 @@
 <section>
-    <h1>I made it!</h1>
+    <h1>Tech Talk</h1>
+
+    <section>
+        
+            {{#each articleArray as |article|}}
+        <article>
+            <h3>{{article.title}}</h3>
+            <p>{{article.content}}</p>
+        </article>
+        {{/each}}
+    </section>
 </section>

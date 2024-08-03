@@ -8,9 +8,15 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const articleData = await Article.create(req.body);
+  try {
+    const articleData = await Article.create(req.body);
 
   return res.json(articleData);
+  } catch (error) {
+    console.error(error)
+    res.status(500).json(error)
+  }
+  
 });
 
 router.get('/:id', async (req, res) => {

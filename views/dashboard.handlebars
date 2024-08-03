@@ -1,0 +1,26 @@
+<section>
+    <h1>Dashboard</h1>
+
+
+    <article>
+        {{#each articles as |article|}}
+
+        <div>
+            <p>
+                {{article.title}}
+            </p>
+            <p>
+                {{article.content}}
+            </p>
+        </div>
+        {{/each}}
+        
+    </article>
+
+    <section>
+        <h2>Post New Article</h2>
+        <a href="/dashboard/newarticle">POST</a>
+    </section>
+
+
+</section>

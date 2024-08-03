@@ -12,9 +12,11 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.username = dbUserData.username;
+      req.session.user_id = dbUserData.id
       res.status(200).json(dbUserData);
     });
+    console.log(dbUserData)
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -26,7 +28,7 @@ router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
-        email: req.body.email,
+        username: req.body.username,
       },
     });
 
@@ -48,6 +50,8 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.username= dbUserData.username
+      req.session.user_id = dbUserData.id
       console.log(
         'File: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
         req.session.cookie
@@ -73,6 +77,16 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+router.get('/allusers', async(req, res) => {
+  try {
+    const allUsers = await User.findAll()
+    res.status(200).json(allUsers)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json()
+  }
+})
 
 module.exports = router;
 
